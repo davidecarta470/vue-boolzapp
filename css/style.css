@@ -1,0 +1,136 @@
+/* GLOBALI */
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
+body{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  height: 100vh;
+  font-size: 12px;
+  background: linear-gradient(0, #d2dbdc 0%,#dddbd1 85%, #249688 15%);
+}
+.clearfix{
+  clear:both;
+  display:table;
+  content:'';
+}
+header img{
+  width:35px;
+  border-radius:50%;
+  margin:8px
+}
+.main_Left img{
+  width:40px;
+  border-radius:50%;
+  margin:10px 10px 10px 20px}
+
+
+/* MAIN CONTAINER */
+.container{
+  width:80%;
+  min-width: 700px;
+  height:95vh;
+}
+/* HEADER */
+.container header{
+  width: 100%;
+  display: flex;
+}
+ .header_Left,.header_Right{
+  height:100%;
+  display: flex;
+  justify-content: space-between;
+ }
+ .main_utente,
+ .header_icons ,
+ .info_accesso,
+ .header_icons,
+ .notifiche_messaggi {
+   display: flex;
+   align-items: center;
+ }
+
+ .main_utente{
+   font-weight: bold;
+ }
+.header_Left div:last-child i,
+.header_Right div:last-child i{
+  margin-right: 10px;
+  font-size: 15px;
+  color:#b1b1b1 ;
+}
+
+.header_Right{
+  border-left: 1px solid #b1b1b1;
+
+}
+.accessi,.attiva_notifiche{
+  font-size: 10px;
+  color:#646464
+}
+
+
+/*      MAIN */
+main{
+  height:90%;
+  display: flex;
+}
+
+ .main_Left, .main_Right{
+  height: 100%;
+}
+
+
+ .main_Left,.header_Left{
+  width: 35%;
+}
+  
+
+
+ .main_Right, .header_Right{
+  width:65%;
+}
+
+
+.notifiche_messaggi{
+  background-color:#8edafb;
+}
+.main_Left ul{
+  list-style: none;
+}
+.main_Left ul li{
+  border-bottom: 1px solid #ededed;
+}
+.main_Left ul li:last-child{
+  border-bottom:none;
+}
+
+.main_Right_Top{
+  height:90%;
+}
+.main_Right_Bottom{
+  height:10%
+}
+
+/* BACKGROUND COLOR */
+.container main .main_Left{
+  background-color:#fafafa;
+}
+.container main .main_Right{
+  background-image: url(../img/mine.jpg);
+}
+.container header .header_Left{
+  background-color: #eaeaea;
+}
+.container header .header_Right{
+  background-color: #eae9ea;
+}
+.main_Right_top{
+  background-color: floralwhite;
+}
+.main_Right_Bottom{
+  background-color: greenyellow;
+}
