@@ -94,11 +94,19 @@ const app = new Vue({
         this.indice=index
       },
       inserisci_messaggio(messaggio_inviato,indice){
+         this.dai_risposta(indice)
          this.contacts[indice].messages.push({data:'',message:messaggio_inviato,status:'sent'})
+
+
          this.messaggio_inviato=''
       },
       cerca_nome (){
          console.log(this.nome_cercato)
+      },
+      dai_risposta(indice){
+        setTimeout(()=>{
+          this.contacts[indice].messages.push({data:'',message:'ok',status:'received'})
+        },2000)
       }
     },
     
