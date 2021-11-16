@@ -75,28 +75,32 @@
           >
         </div>
          
-        <ul>
-          <li 
+        <ul> 
+           
+           <!-- v-for="(contact,index) in contacts" -->
+          <li
+          
           class="clearfix" 
-          v-for="(contact,index) in contacts"
+
+          
           @click="listVisibility(index)"
            >
-              <div class="ultimo_messaggio clearfix">
-                <img :src="contact.avatar" alt="">
-                <div class="utente_accessi">
-                  <div class="nome_utente">
-                    {{contact.name}}
-                  </div>
-                  <div class="accessi"> 
-                    ultimo messaggio
-                  </div>
+            <div class="ultimo_messaggio clearfix">
+              <img :src="contacts[indice].avatar" alt="">
+              <div class="utente_accessi">
+                <div class="nome_utente">
+                  {{contacts[indice].name}}
+                </div>
+                <div class="accessi"> 
+                  ultimo messaggio
                 </div>
               </div>
-                
-              <div  class="data_accesso">
-               <span> data</span> 
-               <span>ora</span>
-              </div>
+            </div>
+              
+            <div  class="data_accesso">
+              <span> data</span> 
+              <span>ora</span>
+            </div>
           </li>
         </ul>
       </div>

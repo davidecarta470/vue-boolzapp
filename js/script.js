@@ -85,7 +85,8 @@ const app = new Vue({
       ,
       indice: 0,
       messaggio_inviato:'',
-      nome_cercato:''
+      nome_cercato:'',
+  
     },
   
     
@@ -103,8 +104,16 @@ const app = new Vue({
          this.messaggio_inviato=''
       },
       cerca_nome (){
-         console.log(this.nome_cercato)
+        for(let i =0 ;i<this.contacts.length ;i++){
+         if(this.contacts[i].name===this.nome_cercato){
+           this.indice=i
+         }
+        }
+        console.log(this.indice)
+       
       },
+
+
       dai_risposta(indice){
         setTimeout(()=>{
           this.contacts[indice].messages.push({data:'',message:'ok',status:'received'})
