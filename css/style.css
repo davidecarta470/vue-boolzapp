@@ -8,6 +8,7 @@ body{
   display:flex;
   justify-content:center;
   align-items: center;
+  font-family: 'Acme', sans-serif;
   height: 100vh;
   font-size: 12px;
   background: linear-gradient(0, #d2dbdc 0%,#dddbd1 85%, #249688 15%);
@@ -41,9 +42,14 @@ header img{
 }
  .header_Left,.header_Right{
   height:100%;
+}
+
+.lista_utenti,.header_Left,.header_Right{
+  
   display: flex;
   justify-content: space-between;
- }
+}
+
  .main_utente,
  .header_icons ,
  .info_accesso,
@@ -61,17 +67,22 @@ header img{
   margin-right: 10px;
   font-size: 15px;
   color:#b1b1b1 ;
+  
 }
 
 .header_Right{
   border-left: 1px solid #b1b1b1;
 
 }
-.accessi,.attiva_notifiche{
+.accessi,.attiva_notifiche,.data_messaggio{
   font-size: 10px;
-  color:#646464
+  color:#b1b1b1
 }
-
+.attiva_notifiche{
+  font-size: 12px;
+  color: #646464;
+  text-decoration: underline;
+}
 
 /*      MAIN */
 main{
@@ -79,40 +90,154 @@ main{
   display: flex;
 }
 
- .main_Left, .main_Right{
+.main_Left, .main_Right{
   height: 100%;
 }
 
-
- .main_Left,.header_Left{
+.main_Left,.header_Left{
   width: 35%;
 }
   
-
-
- .main_Right, .header_Right{
+.main_Right, .header_Right{
   width:65%;
 }
-
 
 .notifiche_messaggi{
   background-color:#8edafb;
 }
+
+
+/* LISTA UTENTI */
+.main_Left .botton_input{
+  width: 100%;
+  position: relative;
+ 
+}
+::placeholder {
+  color:#b1b1b1;
+  font-size: 12px;
+}
+.main_Left button{
+  background-color: white;
+  width: 18%;
+  position: absolute;
+  border:none;
+  padding-right: 25px;
+  margin: 6px;
+  padding: 6px  0px ;
+}
+.main_Left button i{
+  color: #b1b1b1;
+
+}
+.main_Left input{
+  width: 80%;
+  margin: 6px;
+  padding: 6px 17px 6px 17px;
+  border:none;
+  float:right;
+}
+
+.main_Left .notifiche_messaggi i{
+  background-color: white;
+  color: #8edafb;
+  font-size: 15px;
+  margin: 10px;
+  padding:10px;
+  border-radius: 50%;
+}
+
+
 .main_Left ul{
   list-style: none;
 }
 .main_Left ul li{
-  border-bottom: 1px solid #ededed;
+  padding:10px 10px 10px 20px;
+    width: 95%;
+    border-bottom: 1px solid #ededed;
 }
 .main_Left ul li:last-child{
   border-bottom:none;
 }
+.main_Left ul li .ultimo_messaggio{
+  float: left;
+}
+.main_Left ul li .ultimo_messaggio img {
+  float: left;
+  margin:0;
+}
+.main_Left ul li .ultimo_messaggio .utente_accessi{
+  float: left;
+}
+.main_Left ul li .data_accesso{
+  float: right;
+  color:#b1b1b1;
+  font-size: 10px;
 
+}
+.main_Left ul li .data_accesso span:first-child{
+  padding-right: 8px;
+}
+
+
+/* CHAT */
 .main_Right_Top{
-  height:90%;
+  height:90%;  
+  overflow-y:scroll;
 }
 .main_Right_Bottom{
-  height:10%
+  height:10%;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+
+ 
+}
+.main_Right_Bottom input{
+  flex-grow: 1;
+  padding: 10px 0;
+  border:none;
+  text-indent: 20px;
+}
+.main_Right_Bottom i{
+  font-size: 18px;
+  color:#646464;
+  padding:0px 25px;
+  
+}
+.container_messaggi{
+  padding: 50px 20px 20px 20px;
+  
+  
+}
+.sent,.received{
+  position:relative;
+  margin-top:10px
+}
+.sent .testo_messaggio,
+.received .testo_messaggio{
+  line-height: 40px;
+  
+}
+.sent .data_messaggio,
+.received .data_messaggio{
+  position: absolute;
+  bottom: 0%;
+  right: 2%;
+}
+.sent{
+  
+  width: 45%;
+  background-color:#d5faba;
+  border-radius: 8px;
+  margin-left: 50%;
+  padding-left: 10px;
+}
+.received{
+  width: 45%;
+  background-color:white;
+  border-radius: 8px;
+  padding-left: 10px;
 }
 
 /* BACKGROUND COLOR */
@@ -132,5 +257,5 @@ main{
   background-color: floralwhite;
 }
 .main_Right_Bottom{
-  background-color: greenyellow;
+  background-color: #f3eeea;
 }

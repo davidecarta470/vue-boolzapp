@@ -5,16 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha512-SUwyLkI1Wgm4aEZkDkwwigXaOI2HFLy1/YW73asun4sfvlkB9Ecl99+PHfCnfWD0FJjIuFTvWMM7BZPXCckpAA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
 </head>
 <body>
-  <div class="container">
+  <div id="app" class="container ">
     <header>
       <div class="header_Left">
        <div class="main_utente">
-         <img src="img/avatar_1.jpg" alt="">
-         <span>nome utente</span>
+         <img src="img/avatar_7.jpg" alt="">
+         <span>Davide</span>
        </div>
        <div class="header_icons" >
         <i class="fas fa-circle-notch"></i>
@@ -26,17 +32,21 @@
 
       <div class="header_Right">
         <div class="info_accesso">
-          <img src="img/avatar_1.jpg" alt="">
+          <img  :src="contacts[indice].avatar" alt="">
           <div>
-            <div class="nome_utente">Michele</div>
-            <div class="accessi">ultimo accesso oggi alle 16:21</div>
+            <div class="nome_utente">
+              {{contacts[indice].name}}
+            </div>
+            <div class="accessi">
+              ultimo accesso 24/4/2021  16:55
+            </div>
           </div>
           
         </div>
         <div  class="header_icons">
-         <i class="fas fa-circle-notch"></i>
-         <i class="fas fa-comment-alt"></i>
-         <i class="fas fa-ellipsis-v"></i>
+          <i class="fas fa-search"></i>
+          <i class="fas fa-paperclip"></i>
+          <i class="fas fa-ellipsis-v"></i>
         </div>
       </div>
     </header>
@@ -46,29 +56,89 @@
     <main>
       <div class="main_Left">
         <div class="notifiche_messaggi">
-          <img src="img/avatar_1.jpg" alt="">
+          <i class="fas fa-bell-slash"></i>
           <div>
-            <div class="ricevi_notifiche">Michele</div>
-            <div class="attiva_notifiche">ultimo accesso oggi alle 16:21</div>
+            <div class="ricevi_notifiche">Ricevi notifiche di nuovi ,messaggi</div>
+            <div class="attiva_notifiche">Attiva notifiche desktop</div>
           </div>
           
         </div>
-        <input type="text">
+        <div class="botton_input clearfix">
+          <button>
+            <i class="fas fa-search"></i>
+          </button>
+          <input
+            @keydown.enter="cerca_nome"
+            v-model="nome_cercato"
+            type="text" 
+            placeholder="Cerca o inizia una nuova chat!"
+          >
+        </div>
+         
         <ul>
-          <li><img src="img/avatar_1.jpg" alt=""></li>
-          <li><img src="img/avatar_1.jpg" alt=""></li>
-          <li><img src="img/avatar_1.jpg" alt=""></li>
-          <li><img src="img/avatar_1.jpg" alt=""></li>
-          <li><img src="img/avatar_1.jpg" alt=""></li>
+          <li 
+          class="clearfix" 
+          v-for="(contact,index) in contacts"
+          @click="listVisibility(index)"
+           >
+              <div class="ultimo_messaggio clearfix">
+                <img :src="contact.avatar" alt="">
+                <div class="utente_accessi">
+                  <div class="nome_utente">
+                    {{contact.name}}
+                  </div>
+                  <div class="accessi"> 
+                    ultimo messaggio
+                  </div>
+                </div>
+              </div>
+                
+              <div  class="data_accesso">
+               <span> data</span> 
+               <span>ora</span>
+              </div>
+          </li>
         </ul>
       </div>
+     
+       
+
       <div class="main_Right">
-        <div class="main_Right_Top"></div>
-        <div class="main_Right_Bottom"></div>
-      </div>
+        <div class="main_Right_Top">
+          
+          <div class="container_messaggi">
+            <div 
+            
+            v-for="message in contacts[indice].messages"
+            :class="message.status"
+            >
+              <div class="testo_messaggio">{{message.message}}</div>
+              <div class="data_messaggio">{{message.date}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main_Right_Bottom">
+            <i class="far fa-smile"></i>
+            <input 
+            v-model="messaggio_inviato"
+            @keydown.enter="inserisci_messaggio(messaggio_inviato,indice)"
+            type="text" 
+            placeholder="Scrivi un messaggio"
+          >
+          <i class="fas fa-microphone"></i>
+        </div>
+     </div>
     </main>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-  <script src="js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
+        
+          
+          
+          
+
+            
+       
