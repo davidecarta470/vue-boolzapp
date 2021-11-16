@@ -67,7 +67,7 @@ const app = new Vue({
         },
         {
             name: 'Luisa',
-            avatar: '../img/avatar_4.jpg',
+            avatar: '../img/avatar_6.jpg',
             visible: true,
             messages: [{
                 date: '10/01/2020 15:30:55',
@@ -94,9 +94,11 @@ const app = new Vue({
         this.indice=index
       },
       inserisci_messaggio(messaggio_inviato,indice){
-         this.dai_risposta(indice)
-         this.contacts[indice].messages.push({data:'',message:messaggio_inviato,status:'sent'})
+        this.contacts[indice].messages.push({data:'',message:messaggio_inviato,status:'sent'})
 
+        if(this.messaggio_inviato.length>0) {
+          this.dai_risposta(indice)
+        } 
 
          this.messaggio_inviato=''
       },
@@ -106,7 +108,7 @@ const app = new Vue({
       dai_risposta(indice){
         setTimeout(()=>{
           this.contacts[indice].messages.push({data:'',message:'ok',status:'received'})
-        },2000)
+        },1000)
       }
     },
     
