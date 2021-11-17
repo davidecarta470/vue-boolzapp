@@ -62,6 +62,10 @@ header img{
  .main_utente{
    font-weight: bold;
  }
+
+ header{
+   height:10%;
+ }
 .header_Left div:last-child i,
 .header_Right div:last-child i{
   margin-right: 10px;
@@ -156,18 +160,22 @@ main{
     width: 95%;
     border-bottom: 1px solid #ededed;
 }
+.main_Left ul li:hover{
+  background-color: #d3d3d3;
+}
+
 .main_Left ul li:last-child{
   border-bottom:none;
 }
 .main_Left ul li .ultimo_messaggio{
   float: left;
 }
-.main_Left ul li .ultimo_messaggio img {
+.main_Left ul li  img {
   float: left;
   margin:0;
 }
-.main_Left ul li .ultimo_messaggio .utente_accessi{
-  float: left;
+.main_Left ul li .utente_accessi{
+  margin-left:50px;
 }
 .main_Left ul li .data_accesso{
   float: right;
@@ -258,4 +266,11 @@ main{
 }
 .main_Right_Bottom{
   background-color: #f3eeea;
+}
+
+.display{
+  display: none;
+}
+.active{
+  background-color: rgb(233, 233, 233);
 }

@@ -31,14 +31,19 @@
 
 
       <div class="header_Right">
-        <div class="info_accesso">
+        <div 
+          class="chat-none" 
+          v-if="indice<0">
+        </div>
+        <div  v-else class="info_accesso">
           <img  :src="contacts[indice].avatar" alt="">
           <div>
+           
             <div class="nome_utente">
               {{contacts[indice].name}}
             </div>
             <div class="accessi">
-              ultimo accesso 24/4/2021  16:55
+              ultimo accesso 
             </div>
           </div>
           
@@ -74,33 +79,30 @@
             placeholder="Cerca o inizia una nuova chat!"
           >
         </div>
-         
-        <ul> 
-           
-           <!-- v-for="(contact,index) in contacts" -->
-          <li
+        <ul > 
           
-          class="clearfix" 
-
-          
-          @click="listVisibility(index)"
-           >
-            <div class="ultimo_messaggio clearfix">
-              <img :src="contacts[indice].avatar" alt="">
+          <li 
+          v-for="(contact,index) in contacts"
+          @click="chatActive(index)"
+          class="clearfix"
+          :class="{'display': contact.visible===false,active: indice===index}"
+          >
+            
+              <img :src="contact.avatar" alt="">
               <div class="utente_accessi">
                 <div class="nome_utente">
-                  {{contacts[indice].name}}
+                  {{contact.name}}
                 </div>
                 <div class="accessi"> 
-                  ultimo messaggio
+                  {{ getLastMessage(index)}}
                 </div>
               </div>
-            </div>
-              
-            <div  class="data_accesso">
-              <span> data</span> 
-              <span>ora</span>
-            </div>
+             
+                
+              <div  class="data_accesso">
+                <span>{{getLastDate(index)}}</span>
+              </div>
+           
           </li>
         </ul>
       </div>
@@ -111,10 +113,11 @@
         <div class="main_Right_Top">
           
           <div class="container_messaggi">
+            <div v-if="indice<0"></div>
             <div 
-            
-            v-for="message in contacts[indice].messages"
-            :class="message.status"
+              v-else
+              v-for="message in contacts[indice].messages"
+              :class="message.status"
             >
               <div class="testo_messaggio">{{message.message}}</div>
               <div class="data_messaggio">{{message.date}}</div>

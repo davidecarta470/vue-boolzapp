@@ -5,7 +5,7 @@ const app = new Vue({
         {
             name: 'Michele',
             avatar: '../img/avatar_1.jpg',
-            visible: true,
+            visible: false,
             messages: [{
                 date: '10/01/2020 15:30:55',
                 message: 'Hai portato a spasso il cane?',
@@ -26,7 +26,7 @@ const app = new Vue({
         {
             name: 'Fabio',
             avatar: '../img/avatar_2.jpg',
-            visible: true,
+            visible: false,
             messages: [{
                 date: '20/03/2020 16:30:00',
                 message: 'Ciao come stai?',
@@ -47,7 +47,7 @@ const app = new Vue({
         {
             name: 'Samuele',
             avatar: '../img/avatar_3.jpg',
-            visible: true,
+            visible: false,
             messages: [{
                 date: '28/03/2020 10:10:40',
                 message: 'La Marianna va in campagna',
@@ -68,7 +68,7 @@ const app = new Vue({
         {
             name: 'Luisa',
             avatar: '../img/avatar_6.jpg',
-            visible: true,
+            visible: false,
             messages: [{
                 date: '10/01/2020 15:30:55',
                 message: 'Lo sai che ha aperto una nuova pizzeria?',
@@ -83,40 +83,69 @@ const app = new Vue({
         },
       ]
       ,
-      indice: 0,
+      indice:-1,
       messaggio_inviato:'',
       nome_cercato:'',
-  
+      active:'',
     },
   
-    
+   
+
     methods:{
-      listVisibility(index){
+      getLastMessage(index){
+         if (this.contacts[index].messages[ this.contacts[index].messages.length - 1].message.length>20)
+        {
+          return this.contacts[index].messages[ this.contacts[index].messages.length - 1].message.slice(0,20) + '...'
+        }
+        return this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
+      },
+
+
+      getLastDate(index){
+  
+       return this.contacts[index].messages[ this.contacts[index].messages.length - 1].date
+      },
+
+
+      chatActive(index){
+        this.active='active'
         this.indice=index
       },
-      inserisci_messaggio(messaggio_inviato,indice){
-        this.contacts[indice].messages.push({data:'',message:messaggio_inviato,status:'sent'})
 
+
+      inserisci_messaggio(messaggio_inviato,indice){
+        this.contacts[indice].messages.push({date:this.stampaDataOra(),message:messaggio_inviato,status:'sent'})
         if(this.messaggio_inviato.length>0) {
           this.dai_risposta(indice)
         } 
-
-         this.messaggio_inviato=''
+        this.messaggio_inviato=''
       },
+
+
       cerca_nome (){
         for(let i =0 ;i<this.contacts.length ;i++){
-         if(this.contacts[i].name===this.nome_cercato){
-           this.indice=i
+          if(this.contacts[i].name===this.nome_cercato){
+            this.contacts[i].visible=true
+            // this.indice=i   visualizzazione chat al premere del'invio
          }
         }
-        console.log(this.indice)
-       
+        this.nome_cercato=''
+      },
+
+
+
+      stampaDataOra(){
+        let d = new Date()
+        this.dataOra=`
+        ${d.getDate()}/${d.getMonth()}/${d.getFullYear()} 
+        ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+        return this.dataOra
       },
 
 
       dai_risposta(indice){
         setTimeout(()=>{
-          this.contacts[indice].messages.push({data:'',message:'ok',status:'received'})
+          this.contacts[indice].messages.push({date:this.stampaDataOra(),message:'ok',status:'received'})
         },1000)
       }
     },
