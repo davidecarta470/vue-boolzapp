@@ -5,7 +5,7 @@ const app = new Vue({
         {
             name: 'Michele',
             avatar: '../img/avatar_1.jpg',
-            visible: false,
+            visible: true,
             messages: [{
                 date: '10/01/2020 15:30:55',
                 message: 'Hai portato a spasso il cane?',
@@ -26,7 +26,7 @@ const app = new Vue({
         {
             name: 'Fabio',
             avatar: '../img/avatar_2.jpg',
-            visible: false,
+            visible: true,
             messages: [{
                 date: '20/03/2020 16:30:00',
                 message: 'Ciao come stai?',
@@ -47,7 +47,7 @@ const app = new Vue({
         {
             name: 'Samuele',
             avatar: '../img/avatar_3.jpg',
-            visible: false,
+            visible: true,
             messages: [{
                 date: '28/03/2020 10:10:40',
                 message: 'La Marianna va in campagna',
@@ -68,7 +68,7 @@ const app = new Vue({
         {
             name: 'Luisa',
             avatar: '../img/avatar_6.jpg',
-            visible: false,
+            visible: true,
             messages: [{
                 date: '10/01/2020 15:30:55',
                 message: 'Lo sai che ha aperto una nuova pizzeria?',
@@ -94,11 +94,16 @@ const app = new Vue({
     methods:{
 
       getLastMessage(index){
+        // index = 0
+        // let indexLastMessage = this.contacts[index].messages.length - 1;
+        // this.contacts[index].messages[indexLastMessage]
+        
+
          if (this.contacts[index].messages[ this.contacts[index].messages.length - 1].message.length>20)
         {
           return this.contacts[index].messages[ this.contacts[index].messages.length - 1].message.slice(0,20) + '...'
         }
-        return this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
+          return this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
       },
 
 
@@ -123,19 +128,23 @@ const app = new Vue({
 
 
       cerca_nome (){
-        for(let i =0 ;i<this.contacts.length ;i++){
-          if(this.contacts[i].name===this.nome_cercato){
-            this.contacts[i].visible=true
-            // visualizzazione chat al premere del'invio
-            this.indice=i;   
-          }
-        }
-        // for(let contact in this.contacts){
-        //   if(this.contacts[contact].name===this.nome_cercato){
-        //     this.contacts[contact].visible=true
-        //     this.indice=contact
+        // for(let i =0 ;i<this.contacts.length ;i++){
+        //   if(this.contacts[i].name===this.nome_cercato){
+        //     this.contacts[i].visible=true
+        //     // visualizzazione chat al premere del'invio
+        //     console.log(i)
+        //     this.indice=i;   
         //   }
         // }
+        for(let contact in this.contacts){
+          this.contacts[contact].visible=false
+          if(this.contacts[contact].name===this.nome_cercato){
+            this.contacts[contact].visible=true
+            // visualizzazione chat al premere del'invio
+            // il parseInt serve perche' contact è un numero in formato stringa
+            this.indice=parseInt(contact)
+          }
+        }
         this.nome_cercato=''
       },
             //  

@@ -94,7 +94,7 @@
           class="clearfix"
           @click="chatActive(index)"
           v-for="(contact,index) in contacts"
-          :class="{'display': contact.visible===false,active: indice===index}"
+          :class="{'display': contact.visible !== true,active: indice===index}"
           >
             
               <img :src="contact.avatar" alt="">
