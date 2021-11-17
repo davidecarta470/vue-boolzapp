@@ -84,7 +84,7 @@ const app = new Vue({
       ]
       ,
       indice:-1,
-      messaggio_inviato:'',
+      messaggioDaInviare:'',
       nome_cercato:'',
       active:'',
     },
@@ -92,6 +92,7 @@ const app = new Vue({
    
 
     methods:{
+
       getLastMessage(index){
          if (this.contacts[index].messages[ this.contacts[index].messages.length - 1].message.length>20)
         {
@@ -102,23 +103,22 @@ const app = new Vue({
 
 
       getLastDate(index){
-  
-       return this.contacts[index].messages[ this.contacts[index].messages.length - 1].date
+        return this.contacts[index].messages[ this.contacts[index].messages.length - 1].date
       },
-
-
+      // Utenti trovati(HTML)
+      // assegno ad indice il valore index(parametro del v-for )
       chatActive(index){
         this.active='active'
         this.indice=index
       },
 
-
-      inserisci_messaggio(messaggio_inviato,indice){
-        this.contacts[indice].messages.push({date:this.stampaDataOra(),message:messaggio_inviato,status:'sent'})
-        if(this.messaggio_inviato.length>0) {
+      // Input di inserimento messaggio
+      inserisci_messaggio(messaggioDaInviare,indice){
+        this.contacts[indice].messages.push({date:this.stampaDataOra(),message:messaggioDaInviare,status:'sent'})
+        if(this.messaggioDaInviare.length>0) {
           this.dai_risposta(indice)
         } 
-        this.messaggio_inviato=''
+        this.messaggioDaInviare=''
       },
 
 
@@ -127,13 +127,26 @@ const app = new Vue({
           if(this.contacts[i].name===this.nome_cercato){
             this.contacts[i].visible=true
             // visualizzazione chat al premere del'invio
-            this.indice=i   
-         }
+            this.indice=i;   
+          }
         }
+        // for(let contact in this.contacts){
+        //   if(this.contacts[contact].name===this.nome_cercato){
+        //     this.contacts[contact].visible=true
+        //     this.indice=contact
+        //   }
+        // }
         this.nome_cercato=''
       },
+            //  
 
-
+        
+      // risposta automatica del computer + inserimento data e ora
+      dai_risposta(indice){
+        setTimeout(()=>{
+          this.contacts[indice].messages.push({date:this.stampaDataOra(),message:'ok',status:'received'})
+        },1000)
+      },
 
       stampaDataOra(){
         let d = new Date()
@@ -142,13 +155,6 @@ const app = new Vue({
         ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
         return this.dataOra
       },
-
-
-      dai_risposta(indice){
-        setTimeout(()=>{
-          this.contacts[indice].messages.push({date:this.stampaDataOra(),message:'ok',status:'received'})
-        },1000)
-      }
     },
-    
+      
 })

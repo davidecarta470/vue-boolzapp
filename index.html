@@ -35,6 +35,7 @@
           class="chat-none" 
           v-if="indice<0">
         </div>
+        <!--Indicatore della chat attiva (header right)-->
         <div  v-else class="info_accesso">
           <img  :src="contacts[indice].avatar" alt="">
           <div>
@@ -46,7 +47,7 @@
               {{getLastDate(indice)}}
             </div>
           </div>
-          
+          <!-- ----------------------- -->
         </div>
         <div  class="header_icons">
           <i class="fas fa-search"></i>
@@ -68,19 +69,27 @@
           </div>
           
         </div>
-        <div class="botton_input clearfix">
+        <div class="input-contatti-cercati clearfix">
           <button>
             <i class="fas fa-search"></i>
           </button>
+
+          <!--input di ricerca contatto  -->
           <input
             @keydown.enter="cerca_nome"
             v-model="nome_cercato"
             type="text" 
             placeholder="Cerca o inizia una nuova chat!"
           >
+          <!-- ------------------- -->
+
         </div>
+
+
+        
+        
         <ul > 
-          
+          <!-- Utenti trovati -->
           <li 
           class="clearfix"
           @click="chatActive(index)"
@@ -102,8 +111,8 @@
               <div  class="data_accesso">
                 <span>{{getLastDate(index)}}</span>
               </div>
-           
           </li>
+           <!-- ----------------------------- -->
         </ul>
       </div>
      
@@ -114,6 +123,7 @@
           
           <div class="container_messaggi">
             <div v-if="indice<0"></div>
+            <!-- Messaggi Chat -->
             <div 
               v-else
               v-for="message in contacts[indice].messages"
@@ -122,18 +132,22 @@
               <div class="testo_messaggio">{{message.message}}</div>
               <div class="data_messaggio">{{message.date}}</div>
             </div>
+            <!-- ---------------------------- -->
           </div>
         </div>
 
         <div class="main_Right_Bottom">
             <i class="far fa-smile"></i>
+            <!-- input di inserimento messaggio -->
             <input 
-            v-model="messaggio_inviato"
-           
-            @keydown.enter="inserisci_messaggio(messaggio_inviato,indice)"
-            type="text" 
-            placeholder="Scrivi un messaggio"
-          >
+              v-model="messaggioDaInviare"
+            
+              @keydown.enter="inserisci_messaggio(messaggioDaInviare,indice)"
+              type="text" 
+              placeh
+              older="Scrivi un messaggio"
+            >
+            <!-- ---------------------------------- -->
           <i class="fas fa-microphone"></i>
         </div>
      </div>

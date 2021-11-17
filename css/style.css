@@ -62,7 +62,7 @@ header img{
  .main_utente{
    font-weight: bold;
  }
-
+/* HEADER */
  header{
    height:10%;
  }
@@ -111,8 +111,8 @@ main{
 }
 
 
-/* LISTA UTENTI */
-.main_Left .botton_input{
+/* input ricerca contatti */
+.main_Left .input-contatti-cercati{
   width: 100%;
   position: relative;
  
@@ -150,8 +150,8 @@ main{
   padding:10px;
   border-radius: 50%;
 }
-
-
+/* ------------------------------------- */
+/* lista utenti cercati */
 .main_Left ul{
   list-style: none;
 }
@@ -186,7 +186,7 @@ main{
 .main_Left ul li .data_accesso span:first-child{
   padding-right: 8px;
 }
-
+/* --------------------------------------------------- */
 
 /* CHAT */
 .main_Right_Top{
@@ -218,6 +218,9 @@ main{
   
   
 }
+
+
+/* caratteistiche messaggi sent e received */
 .sent,.received{
   position:relative;
   margin-top:10px
@@ -267,6 +270,7 @@ main{
 .main_Right_Bottom{
   background-color: #f3eeea;
 }
+
 
 .display{
   display: none;
