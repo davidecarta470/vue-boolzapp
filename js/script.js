@@ -126,7 +126,8 @@ const app = new Vue({
         for(let i =0 ;i<this.contacts.length ;i++){
           if(this.contacts[i].name===this.nome_cercato){
             this.contacts[i].visible=true
-            // this.indice=i   visualizzazione chat al premere del'invio
+            // visualizzazione chat al premere del'invio
+            this.indice=i   
          }
         }
         this.nome_cercato=''

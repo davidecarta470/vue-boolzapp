@@ -43,7 +43,7 @@
               {{contacts[indice].name}}
             </div>
             <div class="accessi">
-              ultimo accesso 
+              {{getLastDate(indice)}}
             </div>
           </div>
           
@@ -82,9 +82,9 @@
         <ul > 
           
           <li 
-          v-for="(contact,index) in contacts"
-          @click="chatActive(index)"
           class="clearfix"
+          @click="chatActive(index)"
+          v-for="(contact,index) in contacts"
           :class="{'display': contact.visible===false,active: indice===index}"
           >
             
