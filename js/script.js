@@ -190,14 +190,17 @@ const app = new Vue({
             
           }
         }
-
         for(let contact in this.contacts){
           if(this.contacts[contact].visible===true && counter===1){
             this.indice=parseInt(contact)
+            this.nome_cercato=''
+          }else if(counter===0){
+            this.nome_cercato=''  
           }
         }
-        return this.nome_cercato=''
       },
+
+          
         
       cerca_nome(){
         // uso il keyup perchè il keydown mi fa vedere prima la stringa vuora di nome_cercato
