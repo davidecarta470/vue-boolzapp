@@ -181,17 +181,16 @@ const app = new Vue({
         this.messaggioDaInviare=''
       },
 
-
-      // cerca_nome_completo (){
-      //   for(let contact in this.contacts){
-      //     this.contacts[contact].visible=false
-      //     if(this.contacts[contact].name===this.nome_cercato){
-      //       this.contacts[contact].visible=true
-      //       // this.indice=parseInt(contact)
-      //     }
-      //   }
-      //   return this.nome_cercato=''
-      // },
+// do alla variabile indice il valore dellunico oggeto (nel caso del ciclo for/in questo valore è contact)  che ha il valore della chiave .visible === true
+      cerca_nome_completo (){
+        for(let contact in this.contacts){
+          if(this.contacts[contact].visible===true){
+            this.indice=parseInt(contact)
+          }
+        }
+        return this.nome_cercato=''
+      },
+        
       cerca_nome(){
         // uso il keyup perchè il keydown mi fa vedere prima la stringa vuora di nome_cercato
         for(contact in this.contacts){
@@ -199,7 +198,7 @@ const app = new Vue({
           let nomeMaiuscolo=this.contacts[contact].name.toLowerCase()
           this.contacts[contact].visible=false
             if(nomeMaiuscolo.includes(this.nome_cercato)||
-               nome.includes(this.nome_cercato)){
+              nome.includes(this.nome_cercato)){
               this.contacts[contact].visible=true
             }
         }
