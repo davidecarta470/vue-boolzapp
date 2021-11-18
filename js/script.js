@@ -135,7 +135,6 @@ const app = new Vue({
       messaggioDaInviare:'',
       nome_cercato:'',
       active:'',
-      LastMessage:''
     },
   
    
@@ -145,7 +144,7 @@ const app = new Vue({
       getLastMessage(index){
         // se l'ultimo messaggio ha status received viene ,emorizzato nella variavile interna last
         if(this.contacts[index].messages[this.contacts[index].messages.length - 1].status==='received'){
-          LastMessage =  this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
+          let LastMessage =  this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
           if (LastMessage.length>20){
             LastMessage= LastMessage.slice(0,20) + '...'
           }
