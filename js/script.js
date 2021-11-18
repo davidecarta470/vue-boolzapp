@@ -81,12 +81,61 @@ const app = new Vue({
             }
           ],
         },
+        {
+            name: 'Michela',
+            avatar: '../img/avatar_io.jpg',
+            visible: true,
+            messages: [{
+                date: '10/01/2020 15:30:55',
+                message: 'Lo sai che ha aperto una nuova pizzeria?',
+                status: 'sent'
+            },
+            {
+                date: '10/01/2020 15:50:00',
+                message: 'Si, ma preferirei andare al cinema',
+                status: 'received'
+            }
+          ],
+        },
+        {
+            name: 'Fabrizio',
+            avatar: '../img/avatar_1.jpg',
+            visible: true,
+            messages: [{
+                date: '10/01/2020 15:30:55',
+                message: 'Lo sai che ha aperto una nuova pizzeria?',
+                status: 'sent'
+            },
+            {
+                date: '10/01/2020 15:50:00',
+                message: 'Si, ma preferirei andare al cinema',
+                status: 'received'
+            }
+          ],
+        },
+        {
+            name: 'Federico',
+            avatar: '../img/avatar_4.jpg',
+            visible: true,
+            messages: [{
+                date: '10/01/2020 15:30:55',
+                message: 'Lo sai che ha aperto una nuova pizzeria?',
+                status: 'sent'
+            },
+            {
+                date: '10/01/2020 15:50:00',
+                message: 'Si, ma preferirei andare al cinema',
+                status: 'received'
+            }
+          ],
+        },
       ]
       ,
-      indice:-1,
+      indice:0,
       messaggioDaInviare:'',
       nome_cercato:'',
       active:'',
+  
     },
   
    
@@ -94,24 +143,25 @@ const app = new Vue({
     methods:{
 
       getLastMessage(index){
-        // index = 0
-        // let indexLastMessage = this.contacts[index].messages.length - 1;
-        // this.contacts[index].messages[indexLastMessage]
         
+        // if(this.contacts[index].messages[this.contacts[index].messages.length - 1].status==='received'){
+        //   LastMessage =  this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
+        //   if (LastMessage.length>20){
+        //     LastMessage= LastMessage.slice(0,20) + '...'
+        //   }
+        //   return LastMessage
+        // }
 
-         if (this.contacts[index].messages[ this.contacts[index].messages.length - 1].message.length>20)
-        {
-          return this.contacts[index].messages[ this.contacts[index].messages.length - 1].message.slice(0,20) + '...'
-        }
-          return this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
+
       },
+         
 
 
       getLastDate(index){
         return this.contacts[index].messages[ this.contacts[index].messages.length - 1].date
       },
-      // Utenti trovati(HTML)
-      // assegno ad indice il valore index(parametro del v-for )
+
+      
       chatActive(index){
         this.active='active'
         this.indice=index
@@ -119,7 +169,12 @@ const app = new Vue({
 
       // Input di inserimento messaggio
       inserisci_messaggio(messaggioDaInviare,indice){
-        this.contacts[indice].messages.push({date:this.stampaDataOra(),message:messaggioDaInviare,status:'sent'})
+        let newMessage = {
+          date:this.stampaDataOra(),
+          message:messaggioDaInviare,
+          status:'sent'
+        }
+        this.contacts[indice].messages.push(newMessage)
         if(this.messaggioDaInviare.length>0) {
           this.dai_risposta(indice)
         } 
@@ -128,27 +183,27 @@ const app = new Vue({
 
 
       cerca_nome (){
-        // for(let i =0 ;i<this.contacts.length ;i++){
-        //   if(this.contacts[i].name===this.nome_cercato){
-        //     this.contacts[i].visible=true
-        //     // visualizzazione chat al premere del'invio
-        //     console.log(i)
-        //     this.indice=i;   
-        //   }
-        // }
         for(let contact in this.contacts){
           this.contacts[contact].visible=false
           if(this.contacts[contact].name===this.nome_cercato){
             this.contacts[contact].visible=true
-            // visualizzazione chat al premere del'invio
-            // il parseInt serve perche' contact è un numero in formato stringa
-            this.indice=parseInt(contact)
+            // this.indice=parseInt(contact)
           }
         }
-        this.nome_cercato=''
+        return this.nome_cercato=''
       },
-            //  
+      indicizzatore(){
+        // uso il keyup perchè il keydown mi fa vedere prima la stringa vuora di nome_cercato
+        for(contact in this.contacts){
+          this.contacts[contact].visible=false
+          let nome=this.contacts[contact].name
+  
+          if(nome.includes(this.nome_cercato)){
+            this.contacts[contact].visible=true
+          }
 
+        }
+      },
         
       // risposta automatica del computer + inserimento data e ora
       dai_risposta(indice){

@@ -76,6 +76,7 @@
 
           <!--input di ricerca contatto  -->
           <input
+            @keyup="indicizzatore"
             @keydown.enter="cerca_nome"
             v-model="nome_cercato"
             type="text" 
@@ -89,7 +90,7 @@
         
         
         <ul > 
-          <!-- Utenti trovati -->
+          <!-- Lista contatti (contatti trovati) -->
           <li 
           class="clearfix"
           @click="chatActive(index)"
@@ -109,7 +110,9 @@
              
                 
               <div  class="data_accesso">
-                <span>{{getLastDate(index)}}</span>
+                <span>
+                  {{getLastDate(index)}}
+                </span>
               </div>
           </li>
            <!-- ----------------------------- -->
