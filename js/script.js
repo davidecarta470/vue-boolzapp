@@ -183,8 +183,16 @@ const app = new Vue({
 
 // do alla variabile indice il valore dellunico oggeto (nel caso del ciclo for/in questo valore è contact)  che ha il valore della chiave .visible === true
       cerca_nome_completo (){
+        let counter=0
         for(let contact in this.contacts){
           if(this.contacts[contact].visible===true){
+            counter++
+            
+          }
+        }
+
+        for(let contact in this.contacts){
+          if(this.contacts[contact].visible===true && counter===1){
             this.indice=parseInt(contact)
           }
         }
