@@ -169,16 +169,19 @@ const app = new Vue({
 
       // Input di inserimento messaggio
       inserisci_messaggio(messaggioDaInviare,indice){
-        let newMessage = {
-          date:this.stampaDataOra(),
-          message:messaggioDaInviare,
-          status:'sent'
+        // la condizione iniziale serve per impedire di inviare messaggi vuoti 
+        if(messaggioDaInviare.length>0){
+          let newMessage = {
+            date:this.stampaDataOra(),
+            message:messaggioDaInviare,
+            status:'sent'
+          }
+          this.contacts[indice].messages.push(newMessage)
+          if(this.messaggioDaInviare.length>0) {
+            this.dai_risposta(indice)
+          } 
+          this.messaggioDaInviare=''
         }
-        this.contacts[indice].messages.push(newMessage)
-        if(this.messaggioDaInviare.length>0) {
-          this.dai_risposta(indice)
-        } 
-        this.messaggioDaInviare=''
       },
 
 // do alla variabile indice il valore dellunico oggeto (nel caso del ciclo for/in questo valore è contact)  che ha il valore della chiave .visible === true
