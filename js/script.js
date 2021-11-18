@@ -182,27 +182,26 @@ const app = new Vue({
       },
 
 
-      cerca_nome (){
-        for(let contact in this.contacts){
-          this.contacts[contact].visible=false
-          if(this.contacts[contact].name===this.nome_cercato){
-            this.contacts[contact].visible=true
-            // this.indice=parseInt(contact)
-          }
-        }
-        return this.nome_cercato=''
-      },
-      indicizzatore(){
+      // cerca_nome_completo (){
+      //   for(let contact in this.contacts){
+      //     this.contacts[contact].visible=false
+      //     if(this.contacts[contact].name===this.nome_cercato){
+      //       this.contacts[contact].visible=true
+      //       // this.indice=parseInt(contact)
+      //     }
+      //   }
+      //   return this.nome_cercato=''
+      // },
+      cerca_nome(){
         // uso il keyup perchè il keydown mi fa vedere prima la stringa vuora di nome_cercato
         for(contact in this.contacts){
+          let nome=this.contacts[contact].name.toLowerCase()
           this.contacts[contact].visible=false
-          let nome=this.contacts[contact].name
-  
-          if(nome.includes(this.nome_cercato)){
-            this.contacts[contact].visible=true
-          }
-
+            if(nome.includes(this.nome_cercato)){
+              this.contacts[contact].visible=true
+            }
         }
+        
       },
         
       // risposta automatica del computer + inserimento data e ora

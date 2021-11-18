@@ -76,8 +76,8 @@
 
           <!--input di ricerca contatto  -->
           <input
-            @keyup="indicizzatore"
-            @keydown.enter="cerca_nome"
+            @keyup="cerca_nome"
+            @keydown.enter="cerca_nome_completo"
             v-model="nome_cercato"
             type="text" 
             placeholder="Cerca o inizia una nuova chat!"
