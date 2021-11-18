@@ -144,13 +144,13 @@ const app = new Vue({
 
       getLastMessage(index){
         
-        // if(this.contacts[index].messages[this.contacts[index].messages.length - 1].status==='received'){
-        //   LastMessage =  this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
-        //   if (LastMessage.length>20){
-        //     LastMessage= LastMessage.slice(0,20) + '...'
-        //   }
-        //   return LastMessage
-        // }
+        if(this.contacts[index].messages[this.contacts[index].messages.length - 1].status==='received'){
+          LastMessage =  this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
+          if (LastMessage.length>20){
+            LastMessage= LastMessage.slice(0,20) + '...'
+          }
+          return LastMessage
+        }
 
 
       },
@@ -195,9 +195,11 @@ const app = new Vue({
       cerca_nome(){
         // uso il keyup perchè il keydown mi fa vedere prima la stringa vuora di nome_cercato
         for(contact in this.contacts){
-          let nome=this.contacts[contact].name.toLowerCase()
+          let nome=this.contacts[contact].name
+          let nomeMaiuscolo=this.contacts[contact].name.toLowerCase()
           this.contacts[contact].visible=false
-            if(nome.includes(this.nome_cercato)){
+            if(nomeMaiuscolo.includes(this.nome_cercato)||
+               nome.includes(this.nome_cercato)){
               this.contacts[contact].visible=true
             }
         }
