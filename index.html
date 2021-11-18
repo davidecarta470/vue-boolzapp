@@ -103,7 +103,10 @@
                 <div class="nome_utente">
                   {{contact.name}}
                 </div>
-                <div class="accessi"> 
+                <div v-if="getLastMessage(index)===0">
+                  sta scrivendo...
+                </div>
+                <div v-else class="accessi"> 
                   {{ getLastMessage(index)}}
                 </div>
               </div>
