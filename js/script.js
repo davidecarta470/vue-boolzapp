@@ -4,7 +4,7 @@ const app = new Vue({
       contacts: [
         {
             name: 'Michele',
-            avatar: '../img/avatar_1.jpg',
+            avatar: 'img/avatar_1.jpg',
             visible: true,
             messages: [{
                 date: '10/01/2020 15:30:55',
@@ -25,7 +25,7 @@ const app = new Vue({
         },
         {
             name: 'Fabio',
-            avatar: '../img/avatar_2.jpg',
+            avatar: 'img/avatar_2.jpg',
             visible: true,
             messages: [{
                 date: '20/03/2020 16:30:00',
@@ -46,7 +46,7 @@ const app = new Vue({
         },
         {
             name: 'Samuele',
-            avatar: '../img/avatar_3.jpg',
+            avatar: 'img/avatar_3.jpg',
             visible: true,
             messages: [{
                 date: '28/03/2020 10:10:40',
@@ -67,7 +67,7 @@ const app = new Vue({
         },
         {
             name: 'Luisa',
-            avatar: '../img/avatar_6.jpg',
+            avatar: 'img/avatar_6.jpg',
             visible: true,
             messages: [{
                 date: '10/01/2020 15:30:55',
@@ -83,7 +83,7 @@ const app = new Vue({
         },
         {
             name: 'Michela',
-            avatar: '../img/avatar_io.jpg',
+            avatar: 'img/avatar_io.jpg',
             visible: true,
             messages: [{
                 date: '10/01/2020 15:30:55',
@@ -99,7 +99,7 @@ const app = new Vue({
         },
         {
             name: 'Fabrizio',
-            avatar: '../img/avatar_1.jpg',
+            avatar: 'img/avatar_1.jpg',
             visible: true,
             messages: [{
                 date: '10/01/2020 15:30:55',
@@ -115,7 +115,7 @@ const app = new Vue({
         },
         {
             name: 'Federico',
-            avatar: '../img/avatar_4.jpg',
+            avatar: 'img/avatar_4.jpg',
             visible: true,
             messages: [{
                 date: '10/01/2020 15:30:55',
@@ -142,20 +142,20 @@ const app = new Vue({
     methods:{
 
       getLastMessage(index){
-        // se l'ultimo messaggio ha status received viene ,emorizzato nella variavile interna last
+        // se l'ultimo messaggio ha status received viene ,memorizzato nella variavile interna lastM
+  
         if(this.contacts[index].messages[this.contacts[index].messages.length - 1].status==='received'){
           let LastMessage =  this.contacts[index].messages[ this.contacts[index].messages.length - 1].message
           if (LastMessage.length>20){
             LastMessage= LastMessage.slice(0,20) + '...'
           }
           return LastMessage
+        
         }else{
-          return 0
+           return 0
         }
-
-
       },
-         
+     
 
 
       getLastDate(index){
@@ -171,21 +171,39 @@ const app = new Vue({
       // Input di inserimento messaggio
       inserisci_messaggio(messaggioDaInviare,indice){
         // la condizione iniziale serve per impedire di inviare messaggi vuoti 
-        if(messaggioDaInviare.length>0){
-          let newMessage = {
-            date:this.stampaDataOra(),
-            message:messaggioDaInviare,
-            status:'sent'
-          }
-          this.contacts[indice].messages.push(newMessage)
-          if(this.messaggioDaInviare.length>0) {
+        
+          if(messaggioDaInviare.length>0){
+            let newMessage = {
+              date:this.stampaDataOra(),
+              message:messaggioDaInviare,
+              status:'sent'
+            }
+            this.contacts[indice].messages.push(newMessage)
             this.dai_risposta(indice)
-          } 
-          this.messaggioDaInviare=''
-        }
+            this.messaggioDaInviare=''
+          }
       },
+         
+        
+            
+      cerca_nome(){
+      // uso il keyup perchè il keydown mi fa vedere prima la stringa vuora di nome_cercato
+      for(contact in this.contacts){
+        let nome=this.contacts[contact].name
+        let nomeMaiuscolo=this.contacts[contact].name.toLowerCase()
+        this.contacts[contact].visible=false
+          if(nomeMaiuscolo.includes(this.nome_cercato)||
+            nome.includes(this.nome_cercato)){
+            this.contacts[contact].visible=true
+          }
+      }
+      
+      },
+        
+      
 
-// do alla variabile indice il valore dellunico oggeto (nel caso del ciclo for/in questo valore è contact)  che ha il valore della chiave .visible === true
+// do alla variabile indice il valore dell 'unico oggeto (nel caso del ciclo for/in questo valore è contact)  che ha .visible === true
+
       cerca_nome_completo (){
         let counter=0
         for(let contact in this.contacts){
@@ -205,26 +223,11 @@ const app = new Vue({
       },
 
           
-        
-      cerca_nome(){
-        // uso il keyup perchè il keydown mi fa vedere prima la stringa vuora di nome_cercato
-        for(contact in this.contacts){
-          let nome=this.contacts[contact].name
-          let nomeMaiuscolo=this.contacts[contact].name.toLowerCase()
-          this.contacts[contact].visible=false
-            if(nomeMaiuscolo.includes(this.nome_cercato)||
-              nome.includes(this.nome_cercato)){
-              this.contacts[contact].visible=true
-            }
-        }
-        
-      },
-        
       // risposta automatica del computer + inserimento data e ora
       dai_risposta(indice){
         setTimeout(()=>{
           this.contacts[indice].messages.push({date:this.stampaDataOra(),message:'ok',status:'received'})
-        },1000)
+        },2000)
       },
 
       stampaDataOra(){
